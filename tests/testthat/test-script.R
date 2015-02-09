@@ -35,6 +35,38 @@ test_that("Build works with plotting target", {
   cleanup()
 })
 
+test_that("Build works with Rmd knitr targets", {
+  cleanup()
+  m <- remake("knitr.yml")
+  src <- remake_script(m)
+  expect_that(src, is_a("remake_script"))
+  expect_that(unclass(src), is_a("character"))
+
+  e <- source_remake_script(src, envir=new.env(parent=.GlobalEnv))
+  expect_that(file.exists("knitr.md"), is_true())
+  expect_that(is_directory("figure"), is_true())
+  expect_that(file.exists("figure/unnamed-chunk-2-1.png"),
+              is_true())
+
+  cleanup()
+})
+
+test_that("Build works with Rnw knitr targets", {
+  cleanup()
+  m <- remake("knitr.yml")
+  src <- remake_script(m)
+  expect_that(src, is_a("remake_script"))
+  expect_that(unclass(src), is_a("character"))
+
+  e <- source_remake_script(src, envir=new.env(parent=.GlobalEnv))
+  expect_that(file.exists("knitr.md"), is_true())
+  expect_that(is_directory("figure"), is_true())
+  expect_that(file.exists("figure/unnamed-chunk-2-1.pdf"),
+              is_true())
+
+  cleanup()
+})
+
 test_that("Simple interface", {
   cleanup()
   src <- make_script()
