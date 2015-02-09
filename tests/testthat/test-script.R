@@ -47,7 +47,10 @@ test_that("Build works with Rmd knitr targets", {
   expect_that(is_directory("figure"), is_true())
   expect_that(file.exists("figure/unnamed-chunk-2-1.png"),
               is_true())
-
+  expect_that(file.exists("knitr_subdir/knitr.md"), is_true())
+  expect_that(is_directory("knitr_subdir/figure"), is_true())
+  expect_that(file.exists("knitr_subdir/figure/unnamed-chunk-2-1.png"),
+              is_true())
   cleanup()
 })
 
@@ -63,7 +66,10 @@ test_that("Build works with Rnw knitr targets", {
   expect_that(is_directory("figure"), is_true())
   expect_that(file.exists("figure/unnamed-chunk-2-1.pdf"),
               is_true())
-
+  expect_that(file.exists("knitr_subdir/knitr.md"), is_true())
+  expect_that(is_directory("knitr_subdir/figure"), is_true())
+  expect_that(file.exists("knitr_subdir/figure/unnamed-chunk-2-1.pdf"),
+              is_true())
   cleanup()
 })
 
