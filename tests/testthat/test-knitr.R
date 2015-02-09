@@ -24,6 +24,18 @@ test_that("Build Rmd works", {
   cleanup()
 })
 
+test_that("Build Rmd in sub directory works", {
+  cleanup()
+  m <- remake("knitr.yml")
+  m$make("knitr_subdir/knitr.md")
+  expect_that(file.exists("knitr_subdir/knitr.md"), is_true())
+  expect_that(is_directory("knitr_subdir/figure"), is_true())
+  expect_that(file.exists("knitr_subdir/figure/unnamed-chunk-2-1.png"),
+              is_true())
+  cleanup()
+})
+
+
 test_that("Build Rnw works", {
   cleanup()
   m <- remake("knitr.yml")
@@ -34,6 +46,17 @@ test_that("Build Rnw works", {
               is_true())
   expect_that(knitr::opts_chunk$get("fig.path"),
               equals("figure/"))
+  cleanup()
+})
+
+test_that("Build Rnw in sub directory works", {
+  cleanup()
+  m <- remake("knitr.yml")
+  m$make("knitr_subdir/knitr.tex")
+  expect_that(file.exists("knitr_subdir/knitr.tex"), is_true())
+  expect_that(is_directory("knitr_subdir/figure"), is_true())
+  expect_that(file.exists("knitr_subdir/figure/unnamed-chunk-2-1.pdf"),
+              is_true())
   cleanup()
 })
 

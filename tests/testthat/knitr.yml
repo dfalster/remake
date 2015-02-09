@@ -8,7 +8,11 @@ packages:
 
 targets:
   all:
-    depends: knitr.md
+    depends:
+      - knitr.md
+      - knitr.tex
+      - knitr_subdir/knitr.md
+      - knitr_subdir/knitr.tex
 
   data.csv:
     command: download_data(target_name)
@@ -24,3 +28,13 @@ targets:
   knitr.tex:
     depends: processed
     knitr: true
+
+  knitr_subdir/knitr.md:
+    knitr:
+      chdir: true
+    depends: processed
+
+  knitr_subdir/knitr.tex:
+    knitr:
+      chdir: true
+    depends: processed

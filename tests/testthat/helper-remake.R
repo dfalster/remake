@@ -7,11 +7,14 @@ cleanup <- function() {
                                  "knitr.md", "knitr_rename.md",
                                  "knitr.tex",
                                  "knitr_file_dep.md",
+                                 "knitr_subdir/knitr.md",
+                                 "knitr_subdir/knitr.tex",
                                  "test.zip", "remake.zip",
                                  "code_literal.R",
                                  "remake_active.R",
                                  "tmp_quoting.yml")))
   unlink("figure", recursive=TRUE)
+  unlink("knitr_subdir/figure", recursive=TRUE)
   unlink("test", recursive=TRUE)
   unlink("source_dir", recursive=TRUE)
   cache$clear()
