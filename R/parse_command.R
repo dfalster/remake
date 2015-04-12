@@ -151,7 +151,6 @@ parse_command <- function(str) {
   ## First, test for target-like-ness.  That will be things that are
   ## names or character only.  Numbers, etc will drop through here:
   is_target <- unname(vlapply(command[-1], is_target_like))
-
   ## ...and we check them and I() arguments here:
   if (any(!is_target)) {
     i <- c(FALSE, !is_target)

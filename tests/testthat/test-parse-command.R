@@ -228,8 +228,12 @@ test_that("Literal arguments", {
               is_identical_to(TRUE))
   expect_that(parse_command("foo(target_arg, 1L)")$args[[2]],
               is_identical_to(1L))
+  expect_that(parse_command("foo(target_arg, -1L)")$args[[2]],
+              is_identical_to(-1L))
   expect_that(parse_command("foo(target_arg, 1.0)")$args[[2]],
               is_identical_to(1.0))
+  expect_that(parse_command("foo(target_arg, -1.0)")$args[[2]],
+              is_identical_to(-1.0))
   expect_that(parse_command("foo(target_arg, 1i)")$args[[2]],
               is_identical_to(1i))
 })
